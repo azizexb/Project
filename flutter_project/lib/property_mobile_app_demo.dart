@@ -26,29 +26,58 @@ class _PropertyMobileAppDemoState extends State<PropertyMobileAppDemo> {
               ProjectText().subtitle,
               style: _subTitleTextTheme(context),
             ),
-            SizedBox(
-              height: 70,
-              width: 300,
-              child: Padding(
-                padding: ProjectPadding().paddingTop,
+            Padding(
+              padding: ProjectPadding().textFieldPadding,
+              child: SizedBox(
+                height: TextFieldSizedBox().sizedBoxHeight,
                 child: TextField(
                   decoration: InputDecoration(
                     suffixIcon: Align(
                         heightFactor: 1,
                         widthFactor: 1,
                         child: IconButton(
-                            onPressed: () {},
-                            icon: const Icon(Icons.search))),
-                    border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10)),
+                            onPressed: () {}, icon: const Icon(Icons.search))),
+                    border: _textFieldBorderRadius(),
                   ),
                 ),
               ),
             ),
+            Padding(
+              padding: ProjectPadding().paddingTop,
+              child: Text(
+                ProjectText().cardTypeText,
+                style: Theme.of(context).textTheme.headlineSmall,
+              ),
+            ),
+            SizedBox(
+              height: 200,
+              child: ListView(
+                scrollDirection: Axis.horizontal,
+                children: [
+                  Card(
+                    
+                    child: Image.asset('assets/white_house.jpg'),
+                  ),
+                  Card(
+                    child: Image.asset('assets/white_house.jpg'),
+                  ),
+                  Card(
+                    child: Image.asset('assets/white_house.jpg'),
+                  ),
+                  Card(
+                    child: Image.asset('assets/white_house.jpg'),
+                  ),
+                ],
+              ),
+            )
           ],
         ),
       ),
     );
+  }
+
+  OutlineInputBorder _textFieldBorderRadius() {
+    return OutlineInputBorder(borderRadius: BorderRadius.circular(10));
   }
 
   TextStyle? _titleTextTheme(BuildContext context) =>
@@ -65,4 +94,10 @@ class _PropertyMobileAppDemoState extends State<PropertyMobileAppDemo> {
 class ProjectPadding {
   final generalPadding = const EdgeInsets.all(20);
   final paddingTop = const EdgeInsets.only(top: 20);
+  final textFieldPadding =
+      const EdgeInsets.only(right: 35) + const EdgeInsets.only(top: 20);
+}
+
+class TextFieldSizedBox {
+  final double sizedBoxHeight = 55;
 }
